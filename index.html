@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Score Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5faff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .header {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #222;
+    }
+    .btn-custom {
+      border: none;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 3px #999;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+  
+  </style>
+</head>
+<body>
+
+  <div class="header">Score Analyzer</div>
+
+  <div class="text-center mt-2">
+    <details>
+      <summary>▼ Click Me</summary>
+      <em>Enter your grades for your average.</em>
+    </details>
+  </div>
+
+  <div class="container text-center mt-4">
+    <div class="row justify-content-center">
+      
+      <div class="col-md-3 subject-box">
+        <img src="Science.jpg" alt="Science">
+        <input type="number" id="grade1" class="grade-input">
+      </div>
+      
+      <div class="col-md-3 subject-box">
+        <img src="Math.jpg" alt="Math">
+        <input type="number" id="grade2" class="grade-input">
+      </div>
+
+      <div class="col-md-3 subject-box">
+        <img src="English.jpg" alt="English">
+        <input type="number" id="grade3" class="grade-input">
+      </div>
+    </div>
+
+    <button class="btn btn-custom" onclick="getRating()">Get Rating</button>
+
+    <div id="result" class="rating-output"></div>
+
+    <div class="footer mt-4">
+      <p>@Hans Ulit</p>
+    </div>
+  </div>
+
+  <script>
+  function getRating() {
+
+    const g1 = parseFloat(document.getElementById("grade1").value);
+    const g2 = parseFloat(document.getElementById("grade2").value);
+    const g3 = parseFloat(document.getElementById("grade3").value);
+
+    const avg = Math.round(((g1 + g2 + g3) / 3) * 100) / 100;
+
+    let rating = "";
+    switch (true) {
+      case (avg >= 94 && avg <= 100):
+        rating = "Excellent";
+        break;
+      case (avg >= 87 && avg < 94):
+        rating = "Above Satisfactory";
+        break;
+      case (avg >= 80 && avg < 87):
+        rating = "Satisfactory";
+        break;
+        case (avg >= 75 && avg < 80):
+        rating = "Needs Improvement";
+        break;
+      case (avg >= 70 && avg < 75):
+        rating = "Poor";
+        break;
+      default:
+        rating = "Invalid or Failing Grade";
+    }
+
+    window.alert(`Your average is ${avg} - ${rating}`);
+  }
+</script>
+
+</html>
